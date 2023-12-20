@@ -1,5 +1,10 @@
+import Container from 'components/container'
 import Hero from 'components/hero'
 
-export default function About () {
-  return <Hero title='Blog' subtitle='Recent Posts' />
+export default function Blog () {
+  return (
+    <Container>
+      <Hero title='Blog' subtitle='Recent Posts' />
+    </Container>
+  )
 }
