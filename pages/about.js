@@ -1,6 +1,7 @@
 import Container from 'components/container'
 import Hero from 'components/hero'
 import PostBody from 'components/post-body'
+import Contact from 'components/contact'
 
 export default function about () {
   return (
@@ -34,6 +35,8 @@ export default function about () {
           公開リポジトリを活用すると、全世界のどこからでもアクセスし、開発者が関連するプロジェクトのタスクを利用することができます。
         </p>
       </PostBody>
+
+      <Contact />
     </Container>
   )
 }
