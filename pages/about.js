@@ -2,6 +2,8 @@ import Container from 'components/container'
 import Hero from 'components/hero'
 import PostBody from 'components/post-body'
 import Contact from 'components/contact'
+import Image from 'next/image'
+import eyecatch from 'images/about.jpg'
 import {
   TwoColumn,
   TwoColumnMain,
@@ -12,6 +14,17 @@ export default function about () {
   return (
     <Container>
       <Hero title='about' subtitle='aboutdevelopment activities' />
+
+      <figure>
+        <Image
+          src={eyecatch}
+          alt=''
+          layout='responsive'
+          sizes='(min-width: 1152px) 1152px, 100vw'
+          priority
+          placeholder='blur'
+        />
+      </figure>
 
       <TwoColumn>
         <TwoColumnMain>
