@@ -1,4 +1,6 @@
+import Meta from 'components/meta'
 import Container from 'components/container'
+
 import Hero from 'components/hero'
 import PostBody from 'components/post-body'
 import Contact from 'components/contact'
@@ -13,8 +15,14 @@ import {
 export default function about () {
   return (
     <Container>
+      <Meta
+        pageTitle='アバウト'
+        pageDesc='About development activities'
+        pageImg={eyecatch.src}
+        pageImgW={eyecatch.width}
+        pageImgH={eyecatch.height}
+      />
       <Hero title='about' subtitle='aboutdevelopment activities' />
-
       <figure>
         <Image
           src={eyecatch}
@@ -25,7 +33,6 @@ export default function about () {
           placeholder='blur'
         />
       </figure>
-
       <TwoColumn>
         <TwoColumnMain>
           <PostBody>
