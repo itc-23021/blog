@@ -1,6 +1,6 @@
 import styles from 'styles/post-header.module.css'
-import{ FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faClock }from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClock } from '@fortawesome/free-regular-svg-icons'
 
 export default function PostHeader ({ title, subtitle, publish = '' }) {
   return (
@@ -8,10 +8,8 @@ export default function PostHeader ({ title, subtitle, publish = '' }) {
       <p className={styles.subtitle}>{subtitle}</p>
       <h1 className={styles.title}>{title}</h1>
       {publish && <div className={styles.publish}>{publish}</div>}
-    <FontAwesomeIcon icon={faClock} size="lg" color="var(--gray-25)" />
-    {publish}
+      <FontAwesomeIcon icon={faClock} size='lg' color='var(--gray-25)' />
+      {publish}
     </div>
-  )}
-</div>
   )
 }
