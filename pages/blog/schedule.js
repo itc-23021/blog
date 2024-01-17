@@ -65,6 +65,7 @@ export async function getStaticProps () {
   const post = await getPostBySlug(slug)
 
   const description = extractText(post.content)
+
   return {
     props: {
       title: post.title,
