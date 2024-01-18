@@ -11,7 +11,7 @@ import {
 } from 'components/two-column'
 import ConvertBody from 'components/convert-body'
 import PostCategories from 'components/post-categories'
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 
 export default function Schedule ({
   title,
@@ -41,7 +41,6 @@ export default function Schedule ({
             width={eyecatch.width}
             height={eyecatch.height}
             sizes='(min-width: 1152px) 1152px, 100vw'
-            prioity
           />
         </figure>
         <TwoColumn>
