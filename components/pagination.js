@@ -1,49 +1,39 @@
-import React from 'react'
 import styles from 'styles/pagination.module.css'
+import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faChevronLeft,
   faChevronRight
 } from '@fortawesome/free-solid-svg-icons'
 
-const Pagination = ({
+export default function Pagination ({
   prevText = '',
   prevUrl = '',
   nextText = '',
   nextUrl = ''
-}) => {
-  const handleLinkClick = url => {
-    // ここでページ遷移の処理を実装する
-    console.log(`Navigating to: ${url}`)
-    // 例: ページ遷移のロジックを追加する
-  }
-
+}) {
   return (
     <ul className={styles.flexContainer}>
       {prevText && prevUrl && (
         <li className={styles.prev}>
-          <span
-            className={styles.iconText}
-            onClick={() => handleLinkClick(prevUrl)}
-          >
-            <FontAwesomeIcon icon={faChevronLeft} color='var(--gray-25)' />
-            <span>{prevText}</span>
-          </span>
+          <Link href={prevUrl}>
+            <div className={styles.iconText}>
+              <FontAwesomeIcon icon={faChevronLeft} color='var(--gray-25)' />
+              <span>{prevText}</span>
+            </div>
+          </Link>
         </li>
       )}
       {nextText && nextUrl && (
         <li className={styles.next}>
-          <span
-            className={styles.iconText}
-            onClick={() => handleLinkClick(nextUrl)}
-          >
-            <span>{nextText}</span>
-            <FontAwesomeIcon icon={faChevronRight} color='var(--gray-25)' />
-          </span>
+          <Link href={nextUrl}>
+            <div className={styles.iconText}>
+              <span>{nextText}</span>
+              <FontAwesomeIcon icon={faChevronRight} color='var(--gray-25)' />
+            </div>
+          </Link>
         </li>
       )}
     </ul>
   )
 }
-
-export default Pagination
