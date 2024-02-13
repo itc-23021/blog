@@ -13,8 +13,10 @@ import {
 import ConvertBody from 'components/convert-body'
 import PostCategories from 'components/post-categories'
 import Pagination from 'components/pagination'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { getPlaiceholder } from 'plaiceholder'
+
+// ローカルの代替アイキャッチ画像
 import { eyecatchLocal } from 'lib/constants'
 
 export default function Post ({
@@ -36,6 +38,7 @@ export default function Post ({
         pageImgW={eyecatch.width}
         pageImgH={eyecatch.height}
       />
+
       <article>
         <PostHeader title={title} subtitle='Blog Article' publish={publish} />
 
@@ -48,10 +51,12 @@ export default function Post ({
             width={eyecatch.width}
             height={eyecatch.height}
             sizes='(min-width: 1152px) 1152px, 100vw'
+            priority
             placeholder='blur'
             blurDataURL={eyecatch.blurDataURL}
           />
         </figure>
+
         <TwoColumn>
           <TwoColumnMain>
             <PostBody>
@@ -75,10 +80,11 @@ export default function Post ({
 }
 
 export async function getStaticPaths () {
-  const allSlugs = await getAllSlugs(5)
+  const allSlugs = await getAllSlugs()
+
   return {
     paths: allSlugs.map(({ slug }) => `/blog/${slug}`),
-    fallback: 'blocking'
+    fallback: false
   }
 }
 
@@ -86,30 +92,27 @@ export async function getStaticProps (context) {
   const slug = context.params.slug
 
   const post = await getPostBySlug(slug)
-  if (!post) {
-    return { notFound: true }
-  } else {
-    const description = extractText(post.content)
 
-    const eyecatch = post.eyecatch ?? eyecatchLocal
+  const description = extractText(post.content)
 
-    const { base64 } = await getPlaiceholder(eyecatch.url)
-    eyecatch.blurDataURL = base64
+  const eyecatch = post.eyecatch ?? eyecatchLocal
 
-    const allSlugs = await getAllSlugs()
-    const [prevPost, nextPost] = prevNextPost(allSlugs, slug)
+  const { base64 } = await getPlaiceholder(eyecatch.url)
+  eyecatch.blurDataURL = base64
 
-    return {
-      props: {
-        title: post.title,
-        publish: post.publishDate,
-        content: post.content,
-        eyecatch,
-        categories: post.categories,
-        description,
-        prevPost,
-        nextPost
-      }
+  const allSlugs = await getAllSlugs()
+  const [prevPost, nextPost] = prevNextPost(allSlugs, slug)
+
+  return {
+    props: {
+      title: post.title,
+      publish: post.publishDate,
+      content: post.contsnt,
+      eyecatch,
+      categories: post.categories,
+      description,
+      prevPost,
+      nextPost
     }
   }
 }

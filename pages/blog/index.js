@@ -20,9 +20,11 @@ export async function getStaticProps () {
   const posts = await getAllPosts()
 
   for (const post of posts) {
-    if (!post.hasOwnProperty('eyecatch')) {
+    if (!('eyecatch' in post)) {
+      // 'eyecatch' プロパティが存在しない場合の処理
       post.eyecatch = eyecatchLocal
     }
+
     const { base64 } = await getPlaiceholder(post.eyecatch.url)
     post.eyecatch.blurDataURL = base64
   }
